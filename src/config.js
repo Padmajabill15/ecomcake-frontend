@@ -5,7 +5,7 @@
  * Production: https://ecomcake-backend.onrender.com (or your Render URL)
  */
 
-export const API_BASE_URL = import.meta.env.REACT_APP_API_URL || 'http://localhost:5000';
+export const API_BASE_URL = import.meta.env.REACT_APP_API_URL;
 
 // Helper function for API calls
 export const apiCall = async (endpoint, options = {}) => {
