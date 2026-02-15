@@ -1,0 +1,82 @@
+.bgimgs{
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/s3.jpeg") center center no-repeat;
+    background-size: cover;
+ height: 110vh;
+  z-index: 1;
+ 
+}
+
+.bgimgslogin{
+    background:linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../assets/a5.jpeg") center center no-repeat;
+    background-size: cover;
+ height: 110vh;
+  z-index: 1;
+ 
+}
+.bgcolor{
+   
+    /* background-color: #da0c0c66 !important ; */
+    /* background-color: #282727a8 !important ; */
+       background-color: #282727a8 !important ;
+    background-color: transparent;
+      animation: form-animation 4s ease-out 1 forwards;
+}
+@keyframes form-animation {
+    from{
+        background-color: transparent !important ;
+    }
+    to{
+           background-color: #7c0101a8 !important ;
+    }
+}
+
+.txtbx{
+    text-align: center;
+    /* text-transform: uppercase; */
+    background-color: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid white !important;
+    color: white !important;
+}
+.txtbx::placeholder{
+    text-transform: capitalize;
+    color: white !important;
+    text-align: center;
+}
+hr {
+  color: white;
+ 
+  border: 2px solid white !important;
+}
+.quote-text {
+  margin-top: 200px;
+   color: rgba(255, 255, 255, 0.9);
+  opacity: 0; 
+  transform: translateY(30px);
+  animation: fadeSlideUp 2s ease forwards;
+   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); 
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: text-animation 6s ease-in 1 forwards;
+}
+@keyframes text-animation {
+    from{
+         opacity: 0; 
+    }
+    to{
+          opacity: 1; 
+    }
+}
+.quote-texta{
+
+   color: rgba(255, 255, 255, 0.9);
+  opacity: 0; 
+  transform: translateY(30px);
+  animation: fadeSlideUp 2s ease forwards;
+   text-shadow: 0 0 10px rgba(255, 255, 255, 0.7); 
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  animation: text-animation 6s ease-in 1 forwards;
+}

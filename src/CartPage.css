@@ -1,0 +1,332 @@
+/* Base Styles */
+.cake-cart-container {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff9f5;
+  min-height: 100vh;
+}
+
+/* Loading State */
+.cake-loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.cake-spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ff85a2;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Hero Section */
+.cake-cart-hero {
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+              url('https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 80px 20px;
+  margin-bottom: 40px;
+}
+
+.cake-cart-hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.cake-cart-hero p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* Cart Layout */
+.cake-cart-content {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  gap: 30px;
+}
+
+.cake-cart-items {
+  flex: 2;
+}
+
+.cake-cart-summary {
+  flex: 1;
+}
+
+/* Empty Cart */
+.cake-empty-cart {
+  text-align: center;
+  padding: 40px 20px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.cake-empty-icon {
+  margin-bottom: 20px;
+}
+
+.cake-empty-cart h2 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.cake-empty-cart p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Cart Items */
+.cake-cart-title {
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.cake-cart-item {
+  display: flex;
+  background: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  gap: 20px;
+}
+
+.cake-item-image {
+  width: 150px;
+  height: 150px;
+  border-radius: 10px;
+  overflow: hidden;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.cake-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cake-item-details {
+  flex-grow: 1;
+}
+
+.cake-item-details h3 {
+  color: #333;
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+}
+
+.cake-item-desc {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.cake-item-price {
+  color: #ff85a2;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.cake-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.cake-quantity-selector {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  overflow: hidden;
+}
+
+.cake-qty-btn {
+  width: 30px;
+  height: 30px;
+  background: #f8f5f2;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cake-qty-btn:hover {
+  background: #ff85a2;
+  color: white;
+}
+
+.cake-qty-display {
+  width: 40px;
+  text-align: center;
+}
+
+.cake-remove-btn {
+  background: none;
+  border: none;
+  color: #e63946;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.9rem;
+}
+
+.cake-remove-btn:hover {
+  text-decoration: underline;
+}
+
+.cake-item-total {
+  font-weight: 600;
+  color: #333;
+  align-self: flex-start;
+  min-width: 80px;
+  text-align: right;
+}
+
+/* Order Summary */
+.cake-summary-card {
+  background: white;
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 20px;
+}
+
+.cake-summary-card h2 {
+  color: #333;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.cake-summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.cake-free-delivery {
+  color: #4caf50;
+  font-weight: 500;
+}
+
+.cake-summary-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+/* Buttons */
+.cake-btn {
+  display: inline-block;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  text-decoration: none;
+}
+
+.cake-btn-primary {
+  background: #ff85a2;
+  color: white;
+}
+
+.cake-btn-primary:hover {
+  background: #d4a373;
+}
+
+.cake-checkout-btn {
+  width: 100%;
+  background: #d4a373;
+  color: white;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.cake-checkout-btn:hover {
+  background: #c38e70;
+}
+
+.cake-continue-shopping {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #ff85a2;
+  font-size: 0.9rem;
+}
+
+.cake-continue-shopping:hover {
+  color: #d4a373;
+  text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .cake-cart-content {
+    flex-direction: column;
+  }
+  
+  .cake-cart-summary {
+    order: -1;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cake-cart-hero {
+    padding: 60px 20px;
+  }
+  
+  .cake-cart-hero h1 {
+    font-size: 2rem;
+  }
+  
+  .cake-cart-item {
+    flex-direction: column;
+  }
+  
+  .cake-item-image {
+    width: 100%;
+    height: 200px;
+  }
+  
+  .cake-item-total {
+    text-align: left;
+    align-self: flex-end;
+    margin-top: 15px;
+  }
+}

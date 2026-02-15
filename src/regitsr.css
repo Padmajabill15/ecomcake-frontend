@@ -1,0 +1,21 @@
+.register-page{
+    background:linear-gradient(#ff00005e, #e3f2fd70), url('./images/bc1.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    height: 160vh;
+}
+
+.login-page{
+    background:linear-gradient(#ff00005e, #e3f2fd70), url('./images/bc2.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    height: 150vh;
+}
+
+
+.admin-page{
+    background:linear-gradient(#ff00005e, #e3f2fd70), url('./images/bc5.jpg') no-repeat center center;
+    background-size: cover;
+    color: white;
+    height: 150vh;
+}

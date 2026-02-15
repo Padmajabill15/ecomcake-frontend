@@ -1,0 +1,6 @@
+.registerbg{
+    background:linear-gradient(#324c60, #b6384ebd), url("../images/shop3.jpg") center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}

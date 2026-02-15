@@ -1,0 +1,26 @@
+.thumbnail-list {
+    width: 15%;
+  }
+  
+  .thumbnail-img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    object-fit: cover;
+    transition: border 0.3s;
+  }
+  
+  .thumbnail-img:hover {
+    border: 2px solid #007bff;
+  }
+  
+  .main-preview-img {
+    width: 400px;
+    height: 400px;
+    object-fit: contain;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
