@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from './config';
 import { useNavigate } from 'react-router-dom';
 import './regitsr.css';
 
@@ -21,9 +22,9 @@ function Adminlogin({ updaterole }) {
     e.preventDefault();
     setLoading(true);
     setError('');
-    
+
     try {
-      const response = await fetch('http://localhost:5000/admiLogin', {
+      const response = await fetch(`${API_BASE_URL}/admiLogin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -97,7 +98,7 @@ function Adminlogin({ updaterole }) {
                     color: '#fff'
                   }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#e63946" viewBox="0 0 16 16" className="me-2">
-                      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
+                      <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
                     </svg>
                     {error}
                   </div>
@@ -106,14 +107,14 @@ function Adminlogin({ updaterole }) {
                 <form onSubmit={submitHandler}>
                   {/* Email Input */}
                   <div className="mb-4">
-                    <label htmlFor="email" className="form-label small mb-1" style={{ 
+                    <label htmlFor="email" className="form-label small mb-1" style={{
                       color: '#fff',
                       fontWeight: '500'
                     }}>Admin Email</label>
                     <div className="input-group">
                       <span className="input-group-text bg-transparent border-end-0" style={{ color: '#fff' }}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                          <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                          <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
                         </svg>
                       </span>
                       <input
@@ -136,14 +137,14 @@ function Adminlogin({ updaterole }) {
 
                   {/* Password Input */}
                   <div className="mb-4">
-                    <label htmlFor="password" className="form-label small mb-1" style={{ 
+                    <label htmlFor="password" className="form-label small mb-1" style={{
                       color: '#fff',
                       fontWeight: '500'
                     }}>Admin Password</label>
                     <div className="input-group">
                       <span className="input-group-text bg-transparent border-end-0" style={{ color: '#fff' }}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                          <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                          <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
                         </svg>
                       </span>
                       <input
@@ -180,8 +181,8 @@ function Adminlogin({ updaterole }) {
                   </div>
 
                   {/* Submit Button */}
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     className="btn w-100 py-3 fw-bold"
                     style={{
                       backgroundColor: '#d4a373',
@@ -214,7 +215,7 @@ function Adminlogin({ updaterole }) {
                 <div className="mt-4 pt-3 border-top" style={{ borderColor: 'rgba(255,255,255,0.3)' }}>
                   <p className="small mb-0" style={{ color: '#fff' }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#d4a373" viewBox="0 0 16 16" className="me-1">
-                      <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                      <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
                     </svg>
                     Restricted access. Unauthorized attempts are prohibited.
                   </p>

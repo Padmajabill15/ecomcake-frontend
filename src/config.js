@@ -5,12 +5,12 @@
  * Production: https://ecomcake-backend.onrender.com (or your Render URL)
  */
 
-export const API_BASE_URL = import.meta.env.REACT_APP_API_URL;
+export const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Helper function for API calls
 export const apiCall = async (endpoint, options = {}) => {
   const url = `${API_BASE_URL}${endpoint}`;
-  
+
   try {
     const response = await fetch(url, {
       ...options,

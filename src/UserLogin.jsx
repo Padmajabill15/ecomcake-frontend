@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from './config';
 import { useNavigate, Link } from 'react-router-dom';
 import './regitsr.css';
 
@@ -19,7 +20,7 @@ function UserLogin({ updaterole }) {
     e.preventDefault();
     setLoading(true);
     try {
-      let response = await fetch('http://localhost:5000/userLogin', {
+      let response = await fetch(`${API_BASE_URL}/userLogin`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -33,7 +34,7 @@ function UserLogin({ updaterole }) {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
         if (cart.length > 0) {
-          let cartResponse = await fetch('http://localhost:5000/addtocart', {
+          let cartResponse = await fetch(`${API_BASE_URL}/addtocart`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -108,14 +109,14 @@ function UserLogin({ updaterole }) {
                 <form onSubmit={submitHandler}>
                   {/* Email Input */}
                   <div className="mb-4">
-                    <label htmlFor="email" className="form-label small mb-1" style={{ 
+                    <label htmlFor="email" className="form-label small mb-1" style={{
                       color: '#fff',
                       fontWeight: '500'
                     }}>Email</label>
                     <div className="input-group">
                       <span className="input-group-text bg-transparent border-end-0" style={{ color: '#fff' }}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                          <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
+                          <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
                         </svg>
                       </span>
                       <input
@@ -138,14 +139,14 @@ function UserLogin({ updaterole }) {
 
                   {/* Password Input */}
                   <div className="mb-4">
-                    <label htmlFor="password" className="form-label small mb-1" style={{ 
+                    <label htmlFor="password" className="form-label small mb-1" style={{
                       color: '#fff',
                       fontWeight: '500'
                     }}>Password</label>
                     <div className="input-group">
                       <span className="input-group-text bg-transparent border-end-0" style={{ color: '#fff' }}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                          <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/>
+                          <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z" />
                         </svg>
                       </span>
                       <input
@@ -179,23 +180,23 @@ function UserLogin({ updaterole }) {
                         Remember me
                       </label>
                     </div>
-                    <Link to="/forgotpassword" className="small text-decoration-none" style={{ 
+                    <Link to="/forgotpassword" className="small text-decoration-none" style={{
                       color: '#d4a373',
                       transition: 'all 0.3s'
                     }}
-                    onMouseEnter={(e) => {
-                      e.target.style.color = '#b58463';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.target.style.color = '#d4a373';
-                    }}>
+                      onMouseEnter={(e) => {
+                        e.target.style.color = '#b58463';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.target.style.color = '#d4a373';
+                      }}>
                       Forgot password?
                     </Link>
                   </div>
 
                   {/* Submit Button */}
-                  <button 
-                    type="submit" 
+                  <button
+                    type="submit"
                     className="btn w-100 py-3 fw-bold"
                     style={{
                       backgroundColor: '#d4a373',
@@ -234,16 +235,16 @@ function UserLogin({ updaterole }) {
                 {/* Register Link */}
                 <div className="text-center">
                   <p className="small mb-0" style={{ color: '#fff' }}>Don't have an account?</p>
-                  <Link to="/Signup" className="small fw-bold text-decoration-none" style={{ 
+                  <Link to="/Signup" className="small fw-bold text-decoration-none" style={{
                     color: '#d4a373',
                     transition: 'all 0.3s'
                   }}
-                  onMouseEnter={(e) => {
-                    e.target.style.color = '#b58463';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.target.style.color = '#d4a373';
-                  }}>
+                    onMouseEnter={(e) => {
+                      e.target.style.color = '#b58463';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.target.style.color = '#d4a373';
+                    }}>
                     CREATE ACCOUNT
                   </Link>
                 </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from './config';
 import { useNavigate } from 'react-router-dom';
 import './OrderModule.css'; // Custom CSS for shadows, hover, and more
 
@@ -8,7 +9,7 @@ const OrderModule = () => {
   const [trackingStatus, setTrackingStatus] = useState({});
 
   useEffect(() => {
-    fetch('http://localhost:5000/api/orders')
+    fetch(`${API_BASE_URL}/api/orders`)
       .then((res) => res.json())
       .then((data) => {
         setOrders(data);
@@ -32,12 +33,12 @@ const OrderModule = () => {
     }));
   };
 
-  const handleTrackingUpdate =async (orderid) => {
+  const handleTrackingUpdate = async (orderid) => {
     const status = trackingStatus[orderid];
-     const res = await fetch(`http://localhost:5000/api/update-shipping/${orderid}`, {
+    const res = await fetch(`${API_BASE_URL}/api/update-shipping/${orderid}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ status }), 
+      body: JSON.stringify({ status }),
     });
 
     const result = await res.json();
@@ -46,8 +47,8 @@ const OrderModule = () => {
     } else {
       alert(result.message || 'Failed to update');
     }
-  } 
-  
+  }
+
 
   return (
     <div className="container mt-4">
@@ -57,9 +58,8 @@ const OrderModule = () => {
           <div className="col-md-6 col-lg-4 mb-4" key={order.orderid}>
             <div className="custom-card h-100 shadow-lg border-0 rounded-4 p-3 position-relative bg-white">
               <span
-                className={`badge status-badge position-absolute top-0 end-0 m-3 fs-6 fw-semibold rounded-pill ${
-                  order.payment_status === 'Paid' ? 'bg-success' : 'bg-danger'
-                }`}
+                className={`badge status-badge position-absolute top-0 end-0 m-3 fs-6 fw-semibold rounded-pill ${order.payment_status === 'Paid' ? 'bg-success' : 'bg-danger'
+                  }`}
               >
                 {order.payment_status}
               </span>
@@ -97,7 +97,7 @@ const OrderModule = () => {
                   className="btn btn-primary w-100 mt-2 rounded-3"
                   onClick={() => handleView(order.orderid, order.billing_number)}
                 >
-                   View Order
+                  View Order
                 </button>
               </div>
             </div>

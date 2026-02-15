@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../config';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import CryptoJS from 'crypto-js';
 
@@ -41,11 +42,11 @@ function ResetLink() {
   }, [searchParams]);
 
   const submitHandler = async (e) => {
-    let userpassword={
-      password:password
+    let userpassword = {
+      password: password
     }
     e.preventDefault();
-    let response = await fetch(`http://localhost:5000/resetPassword/${userId}`, {
+    let response = await fetch(`${API_BASE_URL}/resetPassword/${userId}`, {
       method: 'put',
       headers: { "Content-Type": "application/JSON" },
       body: JSON.stringify(userpassword),
@@ -53,7 +54,7 @@ function ResetLink() {
 
     let result = await response.json();
     if (response.status == 200) {
-     
+
       console.log(result)
       navigate('/Signin')
     }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from './config';
 import { useParams } from 'react-router-dom';
 
 const ViewProduct = () => {
@@ -14,16 +15,16 @@ const ViewProduct = () => {
   }, []);
 
   const getProductDetails = async () => {
-    const response = await fetch(`http://localhost:5000/product/view/${id}`);
+    const response = await fetch(`${API_BASE_URL}/product/view/${id}`);
     const result = await response.json();
     setProduct(result);
     if (result.images && result.images.length > 0) {
-      setMainImage(`http://localhost:5000/upload/${result.images[0].imagepath}`);
+      setMainImage(`${API_BASE_URL}/upload/${result.images[0].imagepath}`);
     }
   };
 
   const handleImageChange = (index) => {
-    setMainImage(`http://localhost:5000/upload/${product.images[index].imagepath}`);
+    setMainImage(`${API_BASE_URL}/upload/${product.images[index].imagepath}`);
     setActiveIndex(index);
   };
 
@@ -75,7 +76,7 @@ const ViewProduct = () => {
 
     // Logged-in flow: send to server
     try {
-      const res = await fetch('http://localhost:5000/addtocarts', {
+      const res = await fetch(`${API_BASE_URL}/addtocarts`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -103,7 +104,7 @@ const ViewProduct = () => {
             {product.images && product.images.map((img, index) => (
               <img
                 key={index}
-                src={`http://localhost:5000/upload/${img.imagepath}`}
+                src={`${API_BASE_URL}/upload/${img.imagepath}`}
                 alt={`Thumb ${index + 1}`}
                 className={`rounded ${activeIndex === index ? 'border border-primary' : ''}`}
                 onMouseOver={() => handleImageChange(index)}

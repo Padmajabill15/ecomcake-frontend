@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate,Link } from 'react-router-dom';
+import { API_BASE_URL } from './config';
+import { useNavigate, Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min';
 import grbGhee from './images/grb-ghee-cow-449794_l.jpg';
@@ -46,7 +47,7 @@ const Home = () => {
       const token = localStorage.getItem('token');
       if (token) {
         try {
-          const res = await fetch('http://localhost:5000/getcartProduct', {
+          const res = await fetch(`${API_BASE_URL}/getcartProduct`, {
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${token}`
@@ -129,7 +130,7 @@ const Home = () => {
             <i className="bi bi-cart-fill"></i>
           </button>
         </div> */}
-        
+
         <div className="hero-content text-center">
           <h1 className="display-3 fw-bold mb-4 animate__animated animate__fadeInDown">Sign of Purity</h1>
           <p className="lead animate__animated animate__fadeIn animate__delay-1s">
@@ -139,7 +140,7 @@ const Home = () => {
             Order Now
           </button>
         </div>
-        
+
         <div className="hero-scroll-indicator animate__animated animate__bounce animate__infinite">
           <i className="bi bi-chevron-down"></i>
         </div>
@@ -151,15 +152,15 @@ const Home = () => {
           <h2 className="text-center mb-5 section-title animate__animated animate__fadeIn">
             Our {activeCategory.charAt(0).toUpperCase() + activeCategory.slice(1)} Collection
           </h2>
-          
+
           <div className="row g-4">
             {cakes[activeCategory].map((cake) => (
               <div key={cake.id} className="col-md-4 cake-item" style={{ opacity: 0 }}>
                 <div className="card h-100 border-0 shadow-sm overflow-hidden">
                   <div className="cake-image-container">
-                    <img 
-                      src={cake.image} 
-                      className="card-img-top cake-image" 
+                    <img
+                      src={cake.image}
+                      className="card-img-top cake-image"
                       alt={cake.name}
                       loading="lazy"
                     />
@@ -188,7 +189,7 @@ const Home = () => {
         <div className="container">
           <div className="row align-items-center">
             <div className="col-md-6">
-                <div className="offer-content pe-md-5">
+              <div className="offer-content pe-md-5">
                 <span className="badge bg-danger mb-3">Limited Time</span>
                 <p className="mb-4">Experience the purity of GRB Dawat Ghee. Order now and avail 20% off. Offer valid until the end of this month</p>
                 <button
@@ -207,9 +208,9 @@ const Home = () => {
               </div>
             </div>
             <div className="col-md-6">
-              <img 
-                 src={GRBAuth}
-                alt="Custom Cake" 
+              <img
+                src={GRBAuth}
+                alt="Custom Cake"
                 className="img-fluid rounded shadow offer-image animate__animated animate__pulse animate__infinite animate__slower"
               />
             </div>
@@ -245,8 +246,8 @@ const Home = () => {
                 </div>
               </div>
             </div> */}
-            
-            {/* <div className="col-md-4 mb-4">
+
+      {/* <div className="col-md-4 mb-4">
               <div className="card h-100 border-0 shadow-sm p-4">
                 <div className="d-flex mb-3">
                   {[...Array(5)].map((_, i) => (
@@ -366,7 +367,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-    </footer>
+      </footer>
 
       {/* Floating Cart Button
       <button

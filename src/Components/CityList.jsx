@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
+import { API_BASE_URL } from '../config';
 import style from './CityDrop.module.css'
 import '../css/userregister.css'
-function CityList({onSelectCity}) {
+function CityList({ onSelectCity }) {
 
     let [search, setSearch] = useState("")
     let [citys, setCitys] = useState([])
     let [filterData, setFilterData] = useState([])
     let getCityData = async () => {
-        const response = await fetch("http://localhost:5000/citylist");
+        const response = await fetch(`${API_BASE_URL}/citylist`);
         let result = await response.json();
         console.log(result)
         setCitys(result)
@@ -15,7 +16,7 @@ function CityList({onSelectCity}) {
 
     useEffect(() => {
         getCityData()
-    },[])
+    }, [])
     const handleSeach = (e) => {
         let val = e.target.value
         setSearch(val)
@@ -25,16 +26,14 @@ function CityList({onSelectCity}) {
         )
 
     }
-  
-    const handlerCitySlection=(city)=>
-    {
+
+    const handlerCitySlection = (city) => {
         setSearch(city.city_name)
         setFilterData([])
-        if(onSelectCity)
-        {
+        if (onSelectCity) {
             onSelectCity(city.city_id)
         }
-       
+
     }
     console.log(filterData)
     // console.log(citys)
@@ -49,7 +48,7 @@ function CityList({onSelectCity}) {
                             filterData.map((citys) => {
                                 return (
                                     <>
-                                        <li onClick={()=>{handlerCitySlection(citys)}}> {citys.city_name}</li>
+                                        <li onClick={() => { handlerCitySlection(citys) }}> {citys.city_name}</li>
                                     </>
                                 )
                             })

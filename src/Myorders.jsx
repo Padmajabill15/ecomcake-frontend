@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from './config';
 import { useNavigate } from 'react-router-dom';
 import './OrderModule.css';
 import OrderProgress from './OrderProgress'; // 🔹 Import the progress component
@@ -6,10 +7,10 @@ import styles from './OrderProgress.module.css';
 const Myorders = () => {
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
- const steps = ['Processing', 'Packed', 'Shipped', 'Out for Delivery', 'Delivered'];
+  const steps = ['Processing', 'Packed', 'Shipped', 'Out for Delivery', 'Delivered'];
   useEffect(() => {
     const token = localStorage.getItem('token');
-    fetch('http://localhost:5000/myOrders', {
+    fetch(`${API_BASE_URL}/myOrders`, {
       headers: {
         'Authorization': `Bearer ${token}`
       }
@@ -21,7 +22,7 @@ const Myorders = () => {
       .catch((err) => console.error(err));
   }, []);
 
-    const getStepClass = (currentStatus, stepIndex) => {
+  const getStepClass = (currentStatus, stepIndex) => {
     const currentIndex = steps.indexOf(currentStatus);
     return stepIndex <= currentIndex ? 'step completed' : 'step';
   };
@@ -56,7 +57,7 @@ const Myorders = () => {
                 <p className="card-text text-secondary mb-3">Order ID: {order.orderid}</p>
                 <h4 className="card-text text-warning mb-3">Amount: ₹ {order.total_amount}/-</h4>
                 {/* 🔹 Order progress bar component */}
-                      <div className="tracking-steps-wrapper mb-3">
+                <div className="tracking-steps-wrapper mb-3">
                   <div className="progress-bar-track">
                     <div
                       className="progress-bar-fill"
@@ -73,28 +74,28 @@ const Myorders = () => {
                     ))}
                   </div>
                 </div>
-   <div className="d-flex justify-content-between">
-          <div className={styles.iconContent}>
-            <img src="https://i.imgur.com/9nnc9Et.png" className={styles.icon} alt="" />
-            <p><strong>Order<br />Processed</strong></p>
-          </div>
-           <div className={styles.iconContent}>
-    <img src="https://i.imgur.com/KtB7jZV.png" className={styles.icon} alt="" />
-    <p><strong>Order<br />Packed</strong></p>
-  </div>
-          <div className={styles.iconContent}>
-            <img src="https://i.imgur.com/u1AzR7w.png" className={styles.icon} alt="" />
-            <p><strong>Order<br />Shipped</strong></p>
-          </div>
-          <div className={styles.iconContent}>
-            <img src="https://i.imgur.com/TkPm63y.png" className={styles.icon} alt="" />
-            <p><strong>Order<br />En Route</strong></p>
-          </div>
-          <div className={styles.iconContent}>
-            <img src="https://i.imgur.com/HdsziHP.png" className={styles.icon} alt="" />
-            <p><strong>Order<br />Arrived</strong></p>
-          </div>
-        </div>
+                <div className="d-flex justify-content-between">
+                  <div className={styles.iconContent}>
+                    <img src="https://i.imgur.com/9nnc9Et.png" className={styles.icon} alt="" />
+                    <p><strong>Order<br />Processed</strong></p>
+                  </div>
+                  <div className={styles.iconContent}>
+                    <img src="https://i.imgur.com/KtB7jZV.png" className={styles.icon} alt="" />
+                    <p><strong>Order<br />Packed</strong></p>
+                  </div>
+                  <div className={styles.iconContent}>
+                    <img src="https://i.imgur.com/u1AzR7w.png" className={styles.icon} alt="" />
+                    <p><strong>Order<br />Shipped</strong></p>
+                  </div>
+                  <div className={styles.iconContent}>
+                    <img src="https://i.imgur.com/TkPm63y.png" className={styles.icon} alt="" />
+                    <p><strong>Order<br />En Route</strong></p>
+                  </div>
+                  <div className={styles.iconContent}>
+                    <img src="https://i.imgur.com/HdsziHP.png" className={styles.icon} alt="" />
+                    <p><strong>Order<br />Arrived</strong></p>
+                  </div>
+                </div>
                 <button
                   style={{ float: "center" }}
                   className='btn btn-primary col-lg-2 mt-3 mb-3'
@@ -107,7 +108,7 @@ const Myorders = () => {
           </div>
         ))}
       </div>
-         {/* Progress Bar Styles */}
+      {/* Progress Bar Styles */}
       <style>{`
         .tracking-steps-wrapper {
           position: relative;

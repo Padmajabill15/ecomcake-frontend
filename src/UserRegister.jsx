@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from './config';
 import CityList from './Components/CityList';
 import OtpVerification from './Components/OtpVerification';
 import { Link, useNavigate } from 'react-router-dom';
@@ -56,7 +57,7 @@ function UserRegister() {
     const verifyOtp = async (otp) => {
         setLoading(true);
         try {
-            const response = await fetch("http://localhost:5000/verifyOtp", {
+            const response = await fetch(`${API_BASE_URL}/verifyOtp`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ emailid: formdata.email, otp }),
@@ -102,7 +103,7 @@ function UserRegister() {
 
         setLoading(true);
         try {
-            const response = await fetch("http://localhost:5000/userRegister", {
+            const response = await fetch(`${API_BASE_URL}/userRegister`, {
                 method: 'POST',
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(formdata)
@@ -134,7 +135,7 @@ function UserRegister() {
     };
 
     return (
-      <div className="register-page">
+        <div className="register-page">
 
             {!sentOtp ? (
                 <div className="container">
@@ -163,7 +164,7 @@ function UserRegister() {
                                         </div>
                                         <h2 style={{
                                             fontWeight: '700',
-                                             color: '#fff',
+                                            color: '#fff',
                                             marginBottom: '8px'
                                         }}>Create Account</h2>
                                         <p style={{
@@ -176,8 +177,8 @@ function UserRegister() {
                                         <div className="row">
                                             {/* First Name */}
                                             <div className="col-md-6 mb-3">
-                                                <label htmlFor="firstName" className="form-label small mb-1" style={{ 
-                                                 color: '#fff',
+                                                <label htmlFor="firstName" className="form-label small mb-1" style={{
+                                                    color: '#fff',
                                                     fontWeight: '500'
                                                 }}>First Name</label>
                                                 <input
@@ -195,7 +196,7 @@ function UserRegister() {
                                                     placeholder="John"
                                                     required
                                                 />
-                                                {errors.firstName && <div className="invalid-feedback d-block" style={{ 
+                                                {errors.firstName && <div className="invalid-feedback d-block" style={{
                                                     color: '#e63946',
                                                     fontSize: '0.8rem'
                                                 }}>{errors.firstName}</div>}
@@ -203,7 +204,7 @@ function UserRegister() {
 
                                             {/* Last Name */}
                                             <div className="col-md-6 mb-3">
-                                                <label htmlFor="lastName" className="form-label small mb-1" style={{ 
+                                                <label htmlFor="lastName" className="form-label small mb-1" style={{
                                                     color: '#fff',
                                                     fontWeight: '500'
                                                 }}>Last Name</label>
@@ -222,7 +223,7 @@ function UserRegister() {
                                                     placeholder="Doe"
                                                     required
                                                 />
-                                                {errors.lastName && <div className="invalid-feedback d-block" style={{ 
+                                                {errors.lastName && <div className="invalid-feedback d-block" style={{
                                                     color: '#fff',
                                                     fontSize: '0.8rem'
                                                 }}>{errors.lastName}</div>}
@@ -231,8 +232,8 @@ function UserRegister() {
 
                                         {/* Email */}
                                         <div className="mb-3">
-                                            <label htmlFor="email" className="form-label small mb-1" style={{ 
-                                                 color: '#fff',
+                                            <label htmlFor="email" className="form-label small mb-1" style={{
+                                                color: '#fff',
                                                 fontWeight: '500'
                                             }}>Email</label>
                                             <input
@@ -250,7 +251,7 @@ function UserRegister() {
                                                 placeholder="your@email.com"
                                                 required
                                             />
-                                            {errors.email && <div className="invalid-feedback d-block" style={{ 
+                                            {errors.email && <div className="invalid-feedback d-block" style={{
                                                 color: '#e63946',
                                                 fontSize: '0.8rem'
                                             }}>{errors.email}</div>}
@@ -258,8 +259,8 @@ function UserRegister() {
 
                                         {/* Password */}
                                         <div className="mb-4">
-                                            <label htmlFor="password" className="form-label small mb-1" style={{ 
-                                               color: '#fff',
+                                            <label htmlFor="password" className="form-label small mb-1" style={{
+                                                color: '#fff',
                                                 fontWeight: '500'
                                             }}>Password</label>
                                             <input
@@ -277,11 +278,11 @@ function UserRegister() {
                                                 placeholder="••••••••"
                                                 required
                                             />
-                                            {errors.password && <div className="invalid-feedback d-block" style={{ 
+                                            {errors.password && <div className="invalid-feedback d-block" style={{
                                                 color: '#fff',
                                                 fontSize: '0.8rem'
                                             }}>{errors.password}</div>}
-                                            <small className="d-block mt-1" style={{ 
+                                            <small className="d-block mt-1" style={{
                                                 color: '#888',
                                                 fontSize: '0.8rem'
                                             }}>Password must be 8-12 characters</small>
@@ -289,11 +290,11 @@ function UserRegister() {
 
                                         {/* City */}
                                         <div className="mb-4">
-                                            <label className="form-label small mb-1" style={{ 
-                                               color: '#fff',
+                                            <label className="form-label small mb-1" style={{
+                                                color: '#fff',
                                                 fontWeight: '500'
                                             }}>City</label>
-                                            <CityList 
+                                            <CityList
                                                 onSelectCity={handleCityData}
                                                 className={errors.city ? 'is-invalid' : ''}
                                                 style={{
@@ -304,15 +305,15 @@ function UserRegister() {
                                                     width: '100%'
                                                 }}
                                             />
-                                            {errors.city && <div className="invalid-feedback d-block" style={{ 
+                                            {errors.city && <div className="invalid-feedback d-block" style={{
                                                 color: '#e63946',
                                                 fontSize: '0.8rem'
                                             }}>{errors.city}</div>}
                                         </div>
 
                                         {/* Submit Button */}
-                                        <button 
-                                            type="submit" 
+                                        <button
+                                            type="submit"
                                             className="btn w-100 py-3 fw-bold mt-2"
                                             style={{
                                                 backgroundColor: '#d4a373',
@@ -343,16 +344,16 @@ function UserRegister() {
                                         {/* Login Link */}
                                         <div className="text-center mt-4">
                                             <p className="small mb-0" style={{ color: '#666' }}>Already have an account?</p>
-                                            <Link to="/Signin" className="small fw-bold text-decoration-none" style={{ 
+                                            <Link to="/Signin" className="small fw-bold text-decoration-none" style={{
                                                 color: '#d4a373',
                                                 transition: 'all 0.3s'
                                             }}
-                                            onMouseEnter={(e) => {
-                                                e.target.style.color = '#b58463';
-                                            }}
-                                            onMouseLeave={(e) => {
-                                                e.target.style.color = '#d4a373';
-                                            }}>
+                                                onMouseEnter={(e) => {
+                                                    e.target.style.color = '#b58463';
+                                                }}
+                                                onMouseLeave={(e) => {
+                                                    e.target.style.color = '#d4a373';
+                                                }}>
                                                 Sign in instead
                                             </Link>
                                         </div>

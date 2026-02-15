@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from '../config';
 import './Forgotpwd.css'; // Import custom styles
 
 function Forgotpwd() {
@@ -8,7 +9,7 @@ function Forgotpwd() {
         e.preventDefault();
         let userEmail = { email: email };
 
-        let response = await fetch("http://localhost:5000/forgotpwd", {
+        let response = await fetch(`${API_BASE_URL}/forgotpwd`, {
             method: 'POST',
             headers: { "Content-Type": "application/JSON" },
             body: JSON.stringify(userEmail),

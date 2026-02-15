@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from './config';
 import { useParams } from 'react-router-dom';
 
 const EditProductImages = () => {
@@ -11,7 +12,7 @@ const EditProductImages = () => {
   }, []);
 
   const fetchImages = () => {
-    fetch(`http://localhost:5000/productimages/${pid}`)
+    fetch(`${API_BASE_URL}/productimages/${pid}`)
       .then(res => res.json())
       .then(data => setImages(data))
       .catch(err => console.log('Error:', err));
@@ -31,7 +32,7 @@ const EditProductImages = () => {
     const formData = new FormData();
     formData.append('image', selectedFile);
 
-    fetch(`http://localhost:5000/updateproductimage/${imageid}`, {
+    fetch(`${API_BASE_URL}/updateproductimage/${imageid}`, {
       method: 'PUT',
       body: formData,
     })
@@ -49,7 +50,7 @@ const EditProductImages = () => {
   const handleDelete = (imageid) => {
     if (!window.confirm('Are you sure to delete this image?')) return;
 
-    fetch(`http://localhost:5000/deleteproductimage/${imageid}`, {
+    fetch(`${API_BASE_URL}/deleteproductimage/${imageid}`, {
       method: 'DELETE',
     })
       .then(res => res.json())
@@ -72,7 +73,7 @@ const EditProductImages = () => {
           <div key={img.imageid} className="col-md-4 mb-4">
             <div className="card">
               <img
-                src={`http://localhost:5000/upload/${img.imagepath}`}
+                src={`${API_BASE_URL}/upload/${img.imagepath}`}
                 alt="product"
                 className="card-img-top"
                 style={{ height: '200px', objectFit: 'contain' }}
@@ -91,7 +92,7 @@ const EditProductImages = () => {
                   >
                     Update
                   </button>
-               
+
                 </div>
               </div>
             </div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from './config';
 import { useNavigate } from 'react-router-dom';
 
 const ProductModify = () => {
@@ -24,13 +25,13 @@ const ProductModify = () => {
   }, []);
 
   const fetchProducts = async () => {
-    const res = await fetch('http://localhost:5000/allproducts');
+    const res = await fetch(`${API_BASE_URL}/allproducts`);
     const data = await res.json();
     setProducts(data);
   };
 
   const fetchCategories = async () => {
-    const res = await fetch('http://localhost:5000/category');
+    const res = await fetch(`${API_BASE_URL}/category`);
     const data = await res.json();
     setCategories(data);
   };
@@ -43,7 +44,7 @@ const ProductModify = () => {
 
   const handleSave = async (product) => {
     try {
-      const res = await fetch(`http://localhost:5000/updateproduct/${product.productsid}`, {
+      const res = await fetch(`${API_BASE_URL}/updateproduct/${product.productsid}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -64,7 +65,7 @@ const ProductModify = () => {
     }
   };
 
-  const filteredProducts = products.filter(product => 
+  const filteredProducts = products.filter(product =>
     product.productsname.toLowerCase().includes(searchTerm.toLowerCase()) ||
     product.model.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -86,7 +87,7 @@ const ProductModify = () => {
     <div className="container py-4">
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2 className="mb-0">Watch Collection Management</h2>
-        <button 
+        <button
           className="btn btn-primary"
           onClick={() => navigate('/addProducts')}
         >
@@ -145,12 +146,12 @@ const ProductModify = () => {
                     <td>
                       <div className="position-relative">
                         <img
-                          src={`http://localhost:5000/upload/${p.imagepath}`}
+                          src={`${API_BASE_URL}/upload/${p.imagepath}`}
                           alt={p.productsname}
                           className="img-thumbnail"
                           style={{ width: '80px', height: '80px', objectFit: 'cover' }}
                         />
-                        <button 
+                        <button
                           className="btn btn-sm btn-outline-primary position-absolute bottom-0 start-0"
                           style={{ transform: 'translateY(50%)' }}
                           onClick={() => navigate(`/editimage/${p.productsid}`)}

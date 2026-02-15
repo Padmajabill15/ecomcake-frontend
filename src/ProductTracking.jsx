@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from "react";
+import { API_BASE_URL } from './config';
 import { useParams } from 'react-router-dom';
 
 const ProductTracking = () => {
   const [products, setProducts] = useState([]);
-     const { id, billNumber } = useParams();
+  const { id, billNumber } = useParams();
   const steps = ["Order Confirmed", "Packed", "Shipped", "Delivered"];
 
   useEffect(() => {
     const fetchOrders = async () => {
       const token = localStorage.getItem("token");
       if (token) {
-       
+
         try {
-          const response = await fetch(`http://localhost:5000/productTracking/${billNumber}`, {
-          
-           headers: {
-        'Authorization': `Bearer ${token}`
-      }
-          
+          const response = await fetch(`${API_BASE_URL}/productTracking/${billNumber}`, {
+
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+
           });
 
           const result = await response.json();
@@ -59,8 +60,8 @@ const ProductTracking = () => {
         <div className="order-card shadow-lg p-4 mb-5 rounded" key={item.productsid}>
           <div className="d-flex justify-content-between align-items-start flex-wrap">
             <div className="d-flex">
-              <img style={{height:"100px"}}
-                src={`http://localhost:5000/upload/${item.imagepath}`}
+              <img style={{ height: "100px" }}
+                src={`${API_BASE_URL}/upload/${item.imagepath}`}
                 alt={item.productname}
                 className="order-image me-3"
               />
@@ -68,7 +69,7 @@ const ProductTracking = () => {
                 <h5>{item.productname}</h5>
                 <p className="text-muted mb-1">By: {item.productsname || "Brand Name"}</p>
                 <p className="mb-1">Quantity: {item.quantity}</p>
-              
+
               </div>
             </div>
 
@@ -78,11 +79,11 @@ const ProductTracking = () => {
               </span>
               <p className="text-muted mb-1">Total Amount </p>
               <p className="mb-0 fw-semibold text-primary">₹{item.price}</p>
-             
+
             </div>
           </div>
 
-       
+
         </div>
       ))}
 

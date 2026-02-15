@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from './config';
 import styles from './Components/PaymentForm.module.css';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -50,7 +51,7 @@ const CheckoutPage = () => {
         const orderDate = new Date().toISOString().slice(0, 19).replace('T', ' ');
 
         try {
-            const res = await fetch('http://localhost:5000/placeorder', {
+            const res = await fetch(`${API_BASE_URL}/placeorder`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -224,7 +225,7 @@ const CheckoutPage = () => {
                                 <label className="form-label">Total Amount</label>
                                 <input type="text" readOnly className="form-control" value={`₹${totalPrice}`} />
                             </div>
-                           
+
 
                             {paymentMode === 'Online' && (
                                 <>

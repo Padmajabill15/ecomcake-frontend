@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from './config';
 import { Link } from 'react-router-dom';
 import './ProductDisplay.css';
 
@@ -13,11 +14,11 @@ function ProductDisplay() {
   const [showFilters, setShowFilters] = useState(false);
 
   const getProducts = async () => {
-    let response = await fetch("http://localhost:5000/displayProducts");
+    let response = await fetch(`${API_BASE_URL}/displayProducts`);
     let result = await response.json();
     setProducts(result);
     setFilteredProducts(result);
-    
+
     const maxProductPrice = Math.max(...result.map(p => p.price), 0);
     setPriceRange({
       min: 0,
@@ -35,7 +36,7 @@ function ProductDisplay() {
   };
 
   const getcatgry = async () => {
-    let response = await fetch("http://localhost:5000/allcatgoys");
+    let response = await fetch(`${API_BASE_URL}/allcatgoys`);
     let result = await response.json();
     setCtgry([{ categoeryname: "All" }, ...result]);
   };
@@ -51,16 +52,16 @@ function ProductDisplay() {
 
   const applyFilters = () => {
     let filtered = [...products];
-    
+
     if (selectedCategory !== "All") {
       filtered = filtered.filter(p => p.categoeryname === selectedCategory);
     }
-    
-    filtered = filtered.filter(p => 
-      p.price >= currentFilters.minPrice && 
+
+    filtered = filtered.filter(p =>
+      p.price >= currentFilters.minPrice &&
       p.price <= currentFilters.maxPrice
     );
-    
+
     setFilteredProducts(filtered);
   };
 
@@ -84,14 +85,14 @@ function ProductDisplay() {
       return { ...prev, [id]: newQty };
     });
   };
-  
+
   const decrementQty = (id) => {
     setQuantities(prev => ({ ...prev, [id]: Math.max(1, prev[id] - 1) }));
   };
 
   const addtocartHandler = async (product) => {
     let quantity = quantities[product.productsid] || 1;
-    
+
     // Check quantity limit
     if (quantity > 10) {
       const whatsappLink = 'https://wa.me/919448117516?text=Hello, I want to order more than 10 items per product.';
@@ -99,7 +100,7 @@ function ProductDisplay() {
       window.open(whatsappLink, '_blank');
       return; // prevent adding to cart
     }
-    
+
     let token = localStorage.getItem("token");
 
     if (!token) {
@@ -116,7 +117,7 @@ function ProductDisplay() {
       alert(`${product.productsname} added to cart!`);
     } else {
       let cartItems = { ...product, qunatity: quantity };
-      await fetch('http://localhost:5000/addtocarts', {
+      await fetch(`${API_BASE_URL}/addtocarts`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -141,7 +142,7 @@ function ProductDisplay() {
       <div className="container cake-product-container">
         {/* Mobile Filter Toggle */}
         <div className="d-md-none mb-4">
-          <button 
+          <button
             className="btn btn-pink w-100"
             onClick={() => setShowFilters(!showFilters)}
           >
@@ -157,7 +158,7 @@ function ProductDisplay() {
                 <i className="bi bi-funnel me-2"></i>
                 Filter Products
               </h4>
-              
+
               <div className="mb-4">
                 <label className="filter-label">Category</label>
                 <div className="category-list">
@@ -228,14 +229,14 @@ function ProductDisplay() {
                       </div>
                       <div className="cake-img-container">
                         <img
-                          src={`http://localhost:5000/upload/${product.imagepath}`}
+                          src={`${API_BASE_URL}/upload/${product.imagepath}`}
                           className="cake-img"
                           alt={product.productsname}
                           loading="lazy"
                         />
                         <div className="cake-overlay">
-                          <Link 
-                            to={`/viewProduct/${product.productsid}`} 
+                          <Link
+                            to={`/viewProduct/${product.productsid}`}
                             className="btn btn-view"
                           >
                             Quick View
@@ -245,19 +246,19 @@ function ProductDisplay() {
                       <div className="cake-card-body">
                         <h5 className="cake-title">{product.productsname}</h5>
                         <p className="cake-desc">{product.description || 'Premium products'}</p>
-                        
+
                         <div className="cake-price-qty">
                           <h5 className="cake-price">₹{product.price}</h5>
                           <div className="cake-qty-selector">
-                            <button 
-                              className="qty-btn" 
+                            <button
+                              className="qty-btn"
                               onClick={() => decrementQty(product.productsid)}
                             >
                               -
                             </button>
                             <span>{quantities[product.productsid] || 1}</span>
-                            <button 
-                              className="qty-btn" 
+                            <button
+                              className="qty-btn"
                               onClick={() => incrementQty(product.productsid)}
                             >
                               +
@@ -265,7 +266,7 @@ function ProductDisplay() {
                           </div>
                         </div>
 
-                        <button 
+                        <button
                           className="btn btn-add-to-cart"
                           onClick={() => addtocartHandler(product)}
                         >
@@ -284,7 +285,7 @@ function ProductDisplay() {
                 </div>
                 <h4>No Products found matching your filters</h4>
                 <p>Try adjusting your filters or our full collection</p>
-                <button 
+                <button
                   className="btn btn-pink"
                   onClick={() => {
                     setSelectedCategory("All");
